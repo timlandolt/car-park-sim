@@ -13,3 +13,6 @@ A school assignment in which we have to simulate a multi-storey car park. We hav
 > **2. draw the necessary/meaningful UML diagrams.**
 
 *&copy; 2024 Felix Stadelmann, Therwil (Translated using DeepL)*
+
+## UML Class Diagram
+![class-diagram](https://github.com/user-attachments/assets/e55a3693-6c41-4cd4-8022-5ab0bc654218)
