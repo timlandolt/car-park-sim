@@ -15,4 +15,4 @@ A school assignment in which we have to simulate a multi-storey car park. We hav
 *&copy; 2024 Felix Stadelmann, Therwil (Translated using DeepL)*
 
 ## UML Class Diagram
-![class-diagram](https://github.com/user-attachments/assets/e55a3693-6c41-4cd4-8022-5ab0bc654218)
+![class diagram](https://github.com/user-attachments/assets/fdd04bfd-b462-4ca3-b6d8-9eb5830c3587)
