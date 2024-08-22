@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="car-park-sim:jar">
-    <output-path>$PROJECT_DIR$/out</output-path>
-    <root id="archive" name="car-park-sim.jar">
-      <element id="module-output" name="car-park-sim" />
-    </root>
-  </artifact>
-</component>
