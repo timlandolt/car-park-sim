@@ -5,17 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean exitProgram = false;
 
-        TicketMachine ticketMachine = new TicketMachine();
-
-        CarPark carPark = new CarPark(
-                ticketMachine,
-                new Barrier("Entrance Barrier"),
-                new ExitBarrier("Exit Barrrier 1", ticketMachine),
-                new ExitBarrier("Exit Barrrier 2", ticketMachine),
-                new SpacesDisplay(),
-                5,
-                60,
-                1.452f);
+        CarPark carPark = new CarPark(5, 60, 1.452f);
 
 
         PrintUtils.println("#####################################");

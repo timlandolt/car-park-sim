@@ -1,19 +1,19 @@
 public class CarPark {
-    private TicketMachine ticketMachine;
-    private Barrier entranceBarrier;
-    private ExitBarrier exitBarrier1;
-    private ExitBarrier exitBarrier2;
-    private SpacesDisplay display;
-    private Floor[] floors;
-    private int spacesPerFloor;
-    private float pricePerMinute;
+    private final TicketMachine ticketMachine;
+    private final Barrier entranceBarrier;
+    private final ExitBarrier exitBarrier1;
+    private final ExitBarrier exitBarrier2;
+    private final SpacesDisplay display;
+    private final Floor[] floors;
+    private final int spacesPerFloor;
+    private final float pricePerMinute;
 
-    public CarPark(TicketMachine ticketMachine, Barrier entranceBarrier, ExitBarrier exitBarrier1, ExitBarrier exitBarrier2, SpacesDisplay display, int floors, int spacesPerFloor, float pricePerMinute) {
-        this.ticketMachine = ticketMachine;
-        this.entranceBarrier = entranceBarrier;
-        this.exitBarrier1 = exitBarrier1;
-        this.exitBarrier2 = exitBarrier2;
-        this.display = display;
+    public CarPark(int floors, int spacesPerFloor, float pricePerMinute) {
+        this.ticketMachine = new TicketMachine();
+        this.entranceBarrier = new Barrier("Entrance Barrier");
+        this.exitBarrier1 = new ExitBarrier("Exit Barrier 1", ticketMachine);
+        this.exitBarrier2 = new ExitBarrier("Exit Barrier 2", ticketMachine);
+        this.display = new SpacesDisplay();
         this.floors = new Floor[floors];
         this.spacesPerFloor = spacesPerFloor;
         this.pricePerMinute = pricePerMinute;
@@ -61,14 +61,6 @@ public class CarPark {
 
         return availableSpaces;
     }
-
-//    public void occupySpace() throws NoParkingSpaceException {
-//        if (this.availableSpaces > 0) {
-//            this.availableSpaces--;
-//        } else {
-//            throw new NoParkingSpaceException();
-//        }
-//    }
 
     public Floor getFloor(int id) throws IndexOutOfBoundsException {
         return floors[id - 1];
