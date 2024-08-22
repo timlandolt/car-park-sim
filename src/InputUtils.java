@@ -7,6 +7,7 @@ public class InputUtils {
 
         do {
 
+            PrintUtils.println("");
             for (int i = 0; i < options.length; i++) {
                 PrintUtils.println(i + 1 + ": " + options[i]);
             }

@@ -25,6 +25,7 @@ public class Main {
                 case 4 -> lookAtDisplay(carPark);
                 case 5 -> {
                     exitProgram = true;
+                    scanner.close();
                 }
             }
         }
