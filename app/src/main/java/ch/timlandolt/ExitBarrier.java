@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 public class ExitBarrier extends Barrier{
 
     private TicketMachine ticketMachine;

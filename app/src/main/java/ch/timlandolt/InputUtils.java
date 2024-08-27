@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 import java.util.Scanner;
 
 public class InputUtils {
@@ -35,7 +37,7 @@ public class InputUtils {
         return 0;
     }
 
-    public static int[] getInt(String question, int min, int max, Scanner scanner, boolean cancellable) {
+    public static int[] readInt(String question, int min, int max, Scanner scanner, boolean cancellable) {
         boolean legalInput = false;
         int parsedResponse;
 
@@ -74,11 +76,11 @@ public class InputUtils {
         return responseArray;
     }
 
-    public static String[] getTicketId(String question, Scanner scanner, boolean cancellable) {
-        return getString(question, "^[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}$", scanner, cancellable);
+    public static String[] readTicketId(String question, Scanner scanner, boolean cancellable) {
+        return readString(question, "^[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}$", scanner, cancellable);
     }
 
-    public static String[] getString(String question, String pattern, Scanner scanner, boolean cancellable) {
+    public static String[] readString(String question, String pattern, Scanner scanner, boolean cancellable) {
         boolean legalInput = false;
         String[] response = new String[2];
         response[1] = "0";

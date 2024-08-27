@@ -15,7 +15,12 @@ public class Floor {
         return cashDesk;
     }
 
-    public int getFreeSpacesCount() {
+
+    public ParkingSpace[] getSpaces() {
+        return spaces;
+    }
+
+    public int calcFreeSpaces() {
         int freeSpaces = 0;
         for (ParkingSpace space : spaces) {
             if (!space.isOccupied()) {
@@ -25,11 +30,6 @@ public class Floor {
 
         return freeSpaces;
     }
-
-    public ParkingSpace[] getSpaces() {
-        return spaces;
-    }
-
     public void occupySpace(int id) {
         spaces[id - 1].setOccupied(true);
     }

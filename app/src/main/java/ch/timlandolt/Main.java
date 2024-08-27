@@ -1,11 +1,18 @@
+package ch.timlandolt;
+
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean exitProgram = false;
+    private static int floors = 5;
+    private static int spacesPerFloor = 60;
 
-        CarPark carPark = new CarPark(5, 60, 1.452f);
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        float pricePerMinute = 1.452f;
+
+        CarPark carPark = new CarPark(floors, spacesPerFloor, pricePerMinute);
 
 
         PrintUtils.println("#####################################");
@@ -13,7 +20,7 @@ public class Main {
         PrintUtils.println("#####################################");
         PrintUtils.println("");
 
-        while (!exitProgram) {
+        while (true) {
 
             String[] options = {"Get ticket", "Pay parking fee", "Exit car park", "Look at display", "Exit simulation"};
             int response = InputUtils.selectInt("What do you want to do?", options, scanner);
@@ -24,12 +31,12 @@ public class Main {
                 case 3 -> exitCarPark(scanner, carPark);
                 case 4 -> lookAtDisplay(carPark);
                 case 5 -> {
-                    exitProgram = true;
                     scanner.close();
+                    PrintUtils.println("Bye bye!");
+                    return;
                 }
             }
         }
-        PrintUtils.println("Bye bye!");
     }
 
     private static void getTicket(Scanner scanner, CarPark carPark) {
@@ -40,7 +47,7 @@ public class Main {
 
         while (true) {
 
-            int[] floorNumberResult = InputUtils.getInt("On wich floor do you want to park (1-5)?", 1, 5, scanner, false);
+            int[] floorNumberResult = InputUtils.readInt("On wich floor do you want to park (1-" + floors + ")?", 1, floors, scanner, false);
             int floorNumber = floorNumberResult[0];
             Floor floor = carPark.getFloor(floorNumber);
             PrintUtils.println("");
@@ -51,7 +58,7 @@ public class Main {
             boolean legalSpaceNumber = false;
 
             do {
-                int[] spaceNumberResult = InputUtils.getInt("On wich space do you want to park?", 1, 60, scanner, true);
+                int[] spaceNumberResult = InputUtils.readInt("On wich space do you want to park?", 1, spacesPerFloor, scanner, true);
                 spaceNumber = spaceNumberResult[0];
 
                 if (spaceNumberResult[1] == 1) {
@@ -75,14 +82,14 @@ public class Main {
     private static void payParkingFee(Scanner scanner, CarPark carPark) {
         TicketMachine ticketMachine = carPark.getTicketMachine();
 
-        int[] floorNumberResult = InputUtils.getInt("On wich floor do you want to pay (1-5)?", 1, 5, scanner, true);
+        int[] floorNumberResult = InputUtils.readInt("On wich floor do you want to pay (1-" + floors + ")?", 1, floors, scanner, true);
         int floorNumber = floorNumberResult[0];
 
         if (floorNumberResult[1] == 1) return;
 
         Floor floor = carPark.getFloor(floorNumber);
 
-        String[] ticketIdResponse = InputUtils.getTicketId("Enter your ticket id (e.g. AB10-F901)", scanner, true);
+        String[] ticketIdResponse = InputUtils.readTicketId("Enter your ticket id (e.g. AB10-F901)", scanner, true);
         if (ticketIdResponse[0].equals("1")) return;
         try {
             ParkingTicket ticket = ticketMachine.getTicketFromId(ticketIdResponse[0]);
@@ -91,7 +98,7 @@ public class Main {
                 PrintUtils.println("Your ticket has already been payed.");
                 return;
             }
-            float cost = floor.getCashDesk().getParkingPrice(ticket);
+            float cost = floor.getCashDesk().calcParkingPrice(ticket);
             float roundedCost = Math.round(cost * 20) / 20f;
             ticket.setPayed(true);
             PrintUtils.println("You successfully payed CHF " + roundedCost);
@@ -103,7 +110,7 @@ public class Main {
     private static void exitCarPark(Scanner scanner, CarPark carPark) {
         TicketMachine ticketMachine = carPark.getTicketMachine();
 
-        int[] floorNumberResponse = InputUtils.getInt("On wich floor is your car parked (1-5)?", 1, 5, scanner, true);
+        int[] floorNumberResponse = InputUtils.readInt("On wich floor is your car parked (1-" + floors + ")?", 1, floors, scanner, true);
         int floorNumber = floorNumberResponse[0];
 
         if (floorNumberResponse[1] == 1) return;
@@ -119,7 +126,7 @@ public class Main {
         boolean canExit = false;
 
         do {
-            spaceNumberResponse = InputUtils.getInt("On wich space is your car parked?", 1, 60, scanner, true);
+            spaceNumberResponse = InputUtils.readInt("On wich space is your car parked?", 1, spacesPerFloor, scanner, true);
             spaceNumber = spaceNumberResponse[0];
             if (spaceNumberResponse[1] == 1) return;
 
@@ -132,7 +139,7 @@ public class Main {
             }
         } while (!legalSpaceNumber);
 
-        int exitBarrierNr = InputUtils.getInt("Chose an exit barrier (1/2)", 1, 2, scanner, false)[0];
+        int exitBarrierNr = InputUtils.readInt("Chose an exit barrier (1/2)", 1, 2, scanner, false)[0];
         ExitBarrier exitBarrier = exitBarrierNr == 1 ? carPark.getExitBarrier1() : carPark.getExitBarrier2();
         String ticketId;
 
@@ -140,7 +147,7 @@ public class Main {
 
         while (!legalId) {
 
-            String[] ticketIdResponse = InputUtils.getTicketId("Enter your ticket id (e.g. AB10-F901):", scanner, false);
+            String[] ticketIdResponse = InputUtils.readTicketId("Enter your ticket id (e.g. AB10-F901):", scanner, false);
             ticketId = ticketIdResponse[0];
             if (ticketIdResponse[1].equals("1")) return;
             try {
@@ -164,7 +171,7 @@ public class Main {
     }
 
     private static void lookAtDisplay(CarPark carPark) {
-        String availableSpaces = Integer.toString(carPark.getAvailableSpaces());
+        String availableSpaces = Integer.toString(carPark.calcAvailableSpaces());
         PrintUtils.printBorderedString("Free spaces: " + availableSpaces);
     }
 

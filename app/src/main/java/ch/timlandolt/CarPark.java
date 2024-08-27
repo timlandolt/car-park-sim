@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 public class CarPark {
     private final TicketMachine ticketMachine;
     private final Barrier entranceBarrier;
@@ -48,15 +50,15 @@ public class CarPark {
         return display;
     }
 
-    public int getTotalSpaces() {
+    public int calcTotalSpaces() {
         return floors.length * spacesPerFloor;
     }
 
-    public int getAvailableSpaces() {
+    public int calcAvailableSpaces() {
         int availableSpaces = 0;
 
         for (Floor floor : floors) {
-            availableSpaces += floor.getFreeSpacesCount();
+            availableSpaces += floor.calcFreeSpaces();
         }
 
         return availableSpaces;

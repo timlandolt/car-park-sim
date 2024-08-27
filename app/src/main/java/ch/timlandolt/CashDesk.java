@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -10,7 +12,7 @@ public class CashDesk {
         this.carPark = carPark;
     }
 
-    public float getParkingPrice(ParkingTicket ticket) {
+    public float calcParkingPrice(ParkingTicket ticket) {
         LocalDateTime currentTime = LocalDateTime.now();
         long minutes = Duration.between(ticket.getPurchaseTime(), currentTime).toMinutes();
 

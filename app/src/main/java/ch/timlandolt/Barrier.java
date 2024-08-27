@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 public class Barrier {
     private String name;
 

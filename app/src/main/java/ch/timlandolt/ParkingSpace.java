@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 public class ParkingSpace {
     private boolean occupied = false;
 
