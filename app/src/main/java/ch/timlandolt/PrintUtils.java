@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 import java.time.format.DateTimeFormatter;
 
 public class PrintUtils {

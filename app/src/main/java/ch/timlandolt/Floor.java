@@ -1,3 +1,5 @@
+package ch.timlandolt;
+
 public class Floor {
     private ParkingSpace[] spaces;
     private CashDesk cashDesk;
