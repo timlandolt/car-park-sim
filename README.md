@@ -31,4 +31,5 @@ gradlew.bat build  # For Windows
 The built jar can be found under `app/build/libs/car-parc-sim.jar`
 
 ## UML Class Diagram
-![class diagram](https://github.com/user-attachments/assets/fdd04bfd-b462-4ca3-b6d8-9eb5830c3587)
+![class diagram](https://github.com/user-attachments/assets/063b50b0-04cd-4741-b9cc-ca6858919a5d)
+
