@@ -27,7 +27,7 @@ public class Main {
             int response = InputUtils.selectInt("What do you want to do?", options, scanner);
 
             switch (response) {
-                case 1 -> getTicket(scanner, carPark);
+                case 1 -> buyTicket(scanner, carPark);
                 case 2 -> payParkingFee(scanner, carPark);
                 case 3 -> exitCarPark(scanner, carPark);
                 case 4 -> lookAtDisplay(carPark);
@@ -40,7 +40,7 @@ public class Main {
         }
     }
 
-    private static void getTicket(Scanner scanner, CarPark carPark) {
+    private static void buyTicket(Scanner scanner, CarPark carPark) {
         ParkingTicket ticket = carPark.getTicketMachine().generateAndActivateTicket();
         PrintUtils.printTicket(ticket);
         carPark.getEntranceBarrier().letCarPass();
