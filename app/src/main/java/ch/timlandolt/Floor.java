@@ -1,8 +1,8 @@
 package ch.timlandolt;
 
 public class Floor {
-    private ParkingSpace[] spaces;
-    private CashDesk cashDesk;
+    private final ParkingSpace[] spaces;
+    private final CashDesk cashDesk;
 
     public Floor(int spaces, TicketMachine ticketMachine, CarPark carPark) {
         this.spaces = new ParkingSpace[spaces];
@@ -32,6 +32,7 @@ public class Floor {
 
         return freeSpaces;
     }
+
     public void occupySpace(int id) {
         spaces[id - 1].setOccupied(true);
     }

@@ -2,6 +2,7 @@ package ch.timlandolt;
 
 public class SpacesDisplay {
     private int freeSpaces;
+
     public void setFreeSpaces(int freeSpaces) {
         this.freeSpaces = freeSpaces;
     }

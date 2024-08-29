@@ -12,31 +12,31 @@ public class CarParkTest {
     private int spacesPerFloor;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         floors = 10;
         spacesPerFloor = 19;
         carPark = new CarPark(10, 19, 0.1f);
     }
 
     @Test
-    public void testCalcTotalSpaces() {
-        assertEquals(new CarPark(3, 58, 0.1f).calcTotalSpaces(), 3 * 58);
-        assertEquals(new CarPark(7, 83, 0.1f).calcTotalSpaces(), 7 * 83);
-        assertEquals(new CarPark(10, 10, 0.1f).calcTotalSpaces(), 10 * 10);
-        assertEquals(new CarPark(2, 500, 0.1f).calcTotalSpaces(), 2 * 500);
+    void testCalcTotalSpaces() {
+        assertEquals(3 * 58, new CarPark(3, 58, 0.1f).calcTotalSpaces());
+        assertEquals(7 * 83, new CarPark(7, 83, 0.1f).calcTotalSpaces());
+        assertEquals(10 * 10, new CarPark(10, 10, 0.1f).calcTotalSpaces());
+        assertEquals(2 * 500, new CarPark(2, 500, 0.1f).calcTotalSpaces());
     }
 
     @Test
-    public void testCalcAvailableSpaces() {
-        assertEquals(carPark.calcAvailableSpaces(), 210);
+    void testCalcAvailableSpaces() {
+        assertEquals(190, carPark.calcAvailableSpaces());
         carPark.getFloor(1).occupySpace(1);
-        assertEquals(carPark.calcAvailableSpaces(), 209);
-        carPark.getFloor(1).occupySpace(1);
-        assertEquals(carPark.calcAvailableSpaces(), 208);
+        assertEquals(189, carPark.calcAvailableSpaces());
+        carPark.getFloor(1).occupySpace(2);
+        assertEquals(188, carPark.calcAvailableSpaces());
     }
 
     @Test
-    public void testGetFloor() {
+    void testGetFloor() {
         assertNotNull(carPark.getFloor(1));
     }
 

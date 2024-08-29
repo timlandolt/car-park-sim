@@ -1,8 +1,9 @@
 package ch.timlandolt;
 
-public class ExitBarrier extends Barrier{
+public class ExitBarrier extends Barrier {
 
-    private TicketMachine ticketMachine;
+    private final TicketMachine ticketMachine;
+
     ExitBarrier(String name, TicketMachine ticketMachine) {
         super(name);
         this.ticketMachine = ticketMachine;

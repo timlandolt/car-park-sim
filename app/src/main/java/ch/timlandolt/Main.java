@@ -1,10 +1,11 @@
 package ch.timlandolt;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
-    private static int floors = 5;
-    private static int spacesPerFloor = 60;
+    private static final int floors = 5;
+    private static final int spacesPerFloor = 60;
 
     public static void main(String[] args) {
 
@@ -98,7 +99,7 @@ public class Main {
                 PrintUtils.println("Your ticket has already been payed.");
                 return;
             }
-            float cost = floor.getCashDesk().calcParkingPrice(ticket);
+            float cost = floor.getCashDesk().calcParkingPrice(ticket, LocalDateTime.now());
             float roundedCost = Math.round(cost * 20) / 20f;
             ticket.setPayed(true);
             PrintUtils.println("You successfully payed CHF " + roundedCost);

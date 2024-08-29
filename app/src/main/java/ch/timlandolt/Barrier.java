@@ -1,7 +1,7 @@
 package ch.timlandolt;
 
 public class Barrier {
-    private String name;
+    private final String name;
 
     public Barrier(String name) {
         this.name = name;
