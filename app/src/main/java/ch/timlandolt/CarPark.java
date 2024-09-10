@@ -49,6 +49,14 @@ public class CarPark {
     public SpacesDisplay getDisplay() {
         return display;
     }
+    
+    public int getSpacesPerFloor() {
+        return spacesPerFloor;
+    }
+    
+    public int getFloorCount() {
+        return floors.length;
+    }
 
     public int calcTotalSpaces() {
         return floors.length * spacesPerFloor;
