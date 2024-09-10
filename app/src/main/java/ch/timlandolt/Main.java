@@ -10,7 +10,6 @@ public class Main {
         CarPark carPark = new CarPark(floors, spacesPerFloor, pricePerMinute);
 
         IOHandler ioHandler = new ConsoleIOHandler(carPark);
-
         ioHandler.run();
     }
 }

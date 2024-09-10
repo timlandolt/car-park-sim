@@ -1,14 +1,18 @@
 package ch.timlandolt;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Floor {
     private final ParkingSpace[] spaces;
     private final CashDesk cashDesk;
 
     public Floor(int spaces, TicketMachine ticketMachine, CarPark carPark) {
         this.spaces = new ParkingSpace[spaces];
-        for (int i = 0; i < spaces; i++) {
+
+        IntStream.range(0, spaces).forEach(i -> {
             this.spaces[i] = new ParkingSpace();
-        }
+        });
 
         this.cashDesk = new CashDesk(ticketMachine, carPark);
     }
@@ -23,12 +27,7 @@ public class Floor {
     }
 
     public int calcFreeSpaces() {
-        int freeSpaces = 0;
-        for (ParkingSpace space : spaces) {
-            if (!space.isOccupied()) {
-                freeSpaces++;
-            }
-        }
+        int freeSpaces = (int) Arrays.stream(spaces).filter(space -> !space.isOccupied()).count();
 
         return freeSpaces;
     }

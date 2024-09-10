@@ -1,6 +1,8 @@
 package ch.timlandolt;
 
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class InputUtils {
     public static int selectInt(String question, String[] options, Scanner scanner) {
@@ -10,9 +12,10 @@ public class InputUtils {
         do {
 
             PrintUtils.println("");
-            for (int i = 0; i < options.length; i++) {
-                PrintUtils.println(i + 1 + ": " + options[i]);
-            }
+
+            IntStream.range(0, options.length)
+                    .forEach(i -> PrintUtils.println((i + 1) + ": " + options[i]));
+
 
             PrintUtils.print(question + " ");
             String response = scanner.nextLine();

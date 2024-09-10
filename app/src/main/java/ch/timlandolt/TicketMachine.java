@@ -24,12 +24,10 @@ public class TicketMachine {
     }
 
     public ParkingTicket getTicketFromId(String ticketId) throws TicketNotFoundException {
-        for (ParkingTicket ticket : activeTickets) {
-            if (ticket.getId().equals(ticketId.toUpperCase())) {
-                return ticket;
-            }
-        }
-        throw new TicketNotFoundException(ticketId);
+        return activeTickets.stream()
+                .filter(ticket -> ticket.getId().equals(ticketId.toUpperCase()))
+                .findFirst()
+                .orElseThrow(() -> new TicketNotFoundException(ticketId));
     }
 
     public void deactivateTicket(String ticketId) throws TicketNotFoundException {
