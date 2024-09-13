@@ -1,8 +1,6 @@
 # Exercise 01: Car Park Simulation
 A school assignment in which we have to simulate a multi-storey car park. We have to use java and design suitable UML diagrams for it.
 
-The subtask of making the project functional can be found in the [functional](https://github.com/timlandolt/car-park-sim/tree/functional) branch.
-
 ## The Task
 > **You are developing a car park simulation. This supports the following functionalities:**
 > - The entrance barrier opens when you have taken a ticket. You only get a ticket if there are still free spaces available.

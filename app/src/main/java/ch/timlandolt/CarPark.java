@@ -1,5 +1,8 @@
 package ch.timlandolt;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class CarPark {
     private final TicketMachine ticketMachine;
     private final Barrier entranceBarrier;
@@ -10,19 +13,19 @@ public class CarPark {
     private final int spacesPerFloor;
     private final float pricePerMinute;
 
-    public CarPark(int floors, int spacesPerFloor, float pricePerMinute) {
+    public CarPark(int floorCount, int spacesPerFloor, float pricePerMinute) {
         this.ticketMachine = new TicketMachine();
         this.entranceBarrier = new Barrier("Entrance Barrier");
         this.exitBarrier1 = new ExitBarrier("Exit Barrier 1", ticketMachine);
         this.exitBarrier2 = new ExitBarrier("Exit Barrier 2", ticketMachine);
         this.display = new SpacesDisplay();
-        this.floors = new Floor[floors];
+        this.floors = new Floor[floorCount];
         this.spacesPerFloor = spacesPerFloor;
         this.pricePerMinute = pricePerMinute;
 
-        for (int i = 0; i < floors; i++) {
+        IntStream.range(0, floorCount).forEach(i -> {
             this.floors[i] = new Floor(spacesPerFloor, new TicketMachine(), this);
-        }
+        });
 
     }
 
@@ -49,11 +52,11 @@ public class CarPark {
     public SpacesDisplay getDisplay() {
         return display;
     }
-    
+
     public int getSpacesPerFloor() {
         return spacesPerFloor;
     }
-    
+
     public int getFloorCount() {
         return floors.length;
     }
@@ -63,11 +66,7 @@ public class CarPark {
     }
 
     public int calcAvailableSpaces() {
-        int availableSpaces = 0;
-
-        for (Floor floor : floors) {
-            availableSpaces += floor.calcFreeSpaces();
-        }
+        int availableSpaces = Arrays.stream(floors).mapToInt(Floor::calcFreeSpaces).sum();
 
         return availableSpaces;
     }

@@ -1,6 +1,7 @@
 package ch.timlandolt;
 
 import java.time.format.DateTimeFormatter;
+import java.util.stream.IntStream;
 
 public class PrintUtils {
 
@@ -12,16 +13,16 @@ public class PrintUtils {
         int length = string.length();
         println("");
         PrintUtils.print("####");
-        for (int i = 0; i < length; i++) {
+        IntStream.range(0, length).forEach(i -> {
             System.out.print("#");
-        }
+        });
         System.out.println();
         println("# " + string + " #");
 
         PrintUtils.print("####");
-        for (int i = 0; i < length; i++) {
+        IntStream.range(0, length).forEach(i -> {
             System.out.print("#");
-        }
+        });
         System.out.println();
         println("");
     }
@@ -42,7 +43,8 @@ public class PrintUtils {
         ParkingSpace[] spaces = floor.getSpaces();
 
         System.out.print("[CPS] ");
-        for (int i = 0; i < spaces.length; i++) {
+
+        IntStream.range(0, spaces.length).forEach(i -> {
             if (spaces[i].isOccupied()) {
                 System.out.print("---  ");
             } else {
@@ -53,7 +55,7 @@ public class PrintUtils {
                 System.out.println();
                 System.out.print("[CPS] ");
             }
-        }
+        });
 
         System.out.println();
         println("");
