@@ -7,10 +7,10 @@ public class Floor {
     private final ParkingSpace[] spaces;
     private final CashDesk cashDesk;
 
-    public Floor(int spaces, TicketMachine ticketMachine, CarPark carPark) {
-        this.spaces = new ParkingSpace[spaces];
+    public Floor(int spacesCount, TicketMachine ticketMachine, CarPark carPark) {
+        this.spaces = new ParkingSpace[spacesCount];
 
-        IntStream.range(0, spaces).forEach(i -> {
+        IntStream.range(0, spacesCount).forEach(i -> {
             this.spaces[i] = new ParkingSpace();
         });
 
